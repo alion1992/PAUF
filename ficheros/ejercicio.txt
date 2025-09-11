@@ -1,0 +1,3 @@
+Dado el archivo Libro2.xlsx contiene 21 nombres (ofuscados) y datos personales de una carga masiva de usuarios en nuestra aplicación
+Tenemos que realizar un programa en python que lea los datos proporcionados en un .txt y escriba un fichero con los inserts que realizaremos en la BBDD.
+Nuestras columnas en la BBDD son
