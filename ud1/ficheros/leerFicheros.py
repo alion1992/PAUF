@@ -25,7 +25,7 @@ with open("variasLineas.txt", "r") as f:
     while linea:
         print(linea, end="")
         linea = f.readline()
-    f.close()
+
 
 with open("variasLineas.txt", "r") as f:
     print('LEER TODO')

@@ -1,12 +1,12 @@
-
-
+x = 1
+y = 2
 lista = ['Marta', 'Victor', 'Cristina', 'Noelia']
-lista2 = ['Ian','Diego']
+lista2 = ['Ian', 'Diego']
 lista.append('Javi')
 lista.remove('Javi')
 alumno = lista.pop()
 del lista[1]
-lista.insert(1,'Diego')
+lista.insert(1, 'Diego')
 lista.append('Javi')
 lista.append('Javi')
 lista.append('Javi')
