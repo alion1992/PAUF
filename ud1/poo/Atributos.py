@@ -1,7 +1,7 @@
-class Pajaro:
+class Perro:
 
     # Atributos de clase
-    alas = True
+    patas = True
 
     # Constructor
     def __init__(self, color, especie):
@@ -9,13 +9,20 @@ class Pajaro:
         self.color = color
         self.especie = especie
 
-    def piar(self):
-        print(f'pío pío, mi color es {self.color}')
+    def ladrar(self):
+        print(f'guau guau, mi color es {self.color}')
 
-    def volar(self, metros):
-        print(f'El pájaro ha volado {metros} metros')
+    def andar(self, metros):
+        print(f'El perro ha andado {metros} metros')
+
+    def __str__(self):
+       return f"color {self.color} y especie {self.especie}"
 
 
-piolin = Pajaro('amarillo', 'canario')
-piolin.piar()
-piolin.volar(10)
+zeus = Perro('marron', 'pitbull')
+zeus.ladrar()
+zeus.andar(10)
+zeus.patas = 20
+
+print(zeus.patas)
+print(zeus.__str__())

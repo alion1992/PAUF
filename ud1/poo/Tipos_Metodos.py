@@ -1,46 +1,50 @@
-class Pajaro:
+class Robot:
 
-    # Atributos de clase
-    alas = True
+    # Atributo de clase (lo comparten todos los robots)
+    bateria = True
 
     # Constructor
-    def __init__(self, color, especie):
-        # Atributos de instancia
+    def __init__(self, modelo, color):
+        # Atributos de instancia (cada robot tiene los suyos)
+        self.modelo = modelo
         self.color = color
-        self.especie = especie
 
-    def piar(self):
-        print(f'pío pío, mi color es {self.color}')
+    # Método de instancia
+    def hablar(self):
+        print(f"Soy el robot {self.modelo}, de color {self.color}")
 
-    def volar(self, metros):
-        print(f'El pájaro ha volado {metros} metros')
-        self.piar()
+    def mover(self, pasos):
+        print(f"El robot avanza {pasos} pasos")
+        self.hablar()
 
-    def pintar_negro(self):
-        self.color = 'negro'
+    def pintar_gris(self):
+        self.color = "gris"
 
+    # Método de clase
     @classmethod
-    def poner_huevos(cls, cantidad_huevos):
-        print(f'Puso {cantidad_huevos} huevos')
-        cls.alas = False
+    def apagar_bateria(cls):
+        print("Todas las baterías se han apagado")
+        cls.bateria = False
 
-
+    # Método estático
     @staticmethod
-    def mirar():
-        """No puedo cambiar los atributos de instancia ni de clase
-        Podemos usar para métodos qu eno queremos que modifiquen objetos de la instancia ni de la
-        clase.
-        Estos métodos no dependen de la clase pero están ligados de algún modo a ella"""
-        print("El pájaro mira")
+    def version():
+        """Método que no accede a atributos de clase ni de instancia"""
+        print("Versión de software: 1.0")
 
 
-piolin = Pajaro('amarillo', 'canario')
-print(piolin.color)
-piolin.pintar_negro()
-print(piolin.color)
-piolin.volar(5)
 
-# Imaginamos que no tenemos ninguna instancia...
-Pajaro.poner_huevos(3)  # Estos métodos no pueden acceder a los atributos de instancia
-# Pajaro.piar()  # Dará un error
-print(Pajaro.alas)
+r2d2 = Robot("R2-D2", "blanco")
+print(r2d2.color)
+
+r2d2.pintar_gris()
+print(r2d2.color)
+
+r2d2.mover(10)
+
+# Llamada al método de clase desde la propia clase
+Robot.apagar_bateria()
+print(Robot.bateria)
+
+# Método estático
+Robot.version()

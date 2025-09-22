@@ -1,36 +1,40 @@
-class Animal:
+class Vehiculo:
 
-    def __init__(self, edad, color):
-        self.edad = edad
-        self.color = color
+    def __init__(self, marca, modelo):
+        self.marca = marca
+        self.modelo = modelo
 
-    def nacer(self):
-        print('El animal ha nacido')
+    def encender(self):
+        print(f"El vehículo {self.marca} {self.modelo} está encendido")
 
-    def hablar(self):
-        print('El animal emite un sonido')
-
-
-class Pajaro(Animal):
-
-    def __init__(self, edad, color, altura_vuelo):
-        super(Pajaro, self).__init__(edad, color)
-        self.altura_vuelo = altura_vuelo
-
-    def hablar(self):
-        print('pio')
-
-    def volar(self, metros):
-        print(f'El pájaro vuela {metros} metros')
+    def mover(self):
+        print("El vehículo se está moviendo")
 
 
-print(Animal.__subclasses__())  # Me indica las clases que heredan de él
-print(Pajaro.__bases__)  # Me indica el padre
+class Coche(Vehiculo):
 
-mi_animal = Animal(3, 'azul')
-piolin = Pajaro(2, 'verde', 10)
-piolin.hablar()
-piolin.volar(100)
+    def __init__(self, marca, modelo, puertas):
+        super(Coche, self).__init__(marca, modelo)
+        self.puertas = puertas
+
+    def mover(self):  # Sobrescribimos el método
+        print(f"El coche {self.marca} {self.modelo} circula por la carretera con {self.puertas} puertas")
+
+    def tocar_claxon(self):
+        print("¡piiiip piiip!")
+
+
+# ------------------------------
+# Uso
+# ------------------------------
+print(Vehiculo.__subclasses__())
+print(Coche.__bases__)
+v1 = Vehiculo("Genérico", "X")
+c1 = Coche("Toyota", "Corolla", 4)
+
+v1.mover()
+c1.mover()
+c1.tocar_claxon()
 
 
 
