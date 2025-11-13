@@ -39,7 +39,20 @@ src/main/resources/ y sirve para configurar el comportamiento de la aplicación 
 <p>Spring Boot lo lee automáticamente al iniciar el proyecto y aplica sus valores a los distintos módulos:
 base de datos, servidor, logs, seguridad, etc.</p>
 
-<img width="425" height="196" alt="image" src="https://github.com/user-attachments/assets/3bf0adb6-8bb3-4d12-94fd-14a4f5c53c71" />
+```properties
+spring.application.name=scrum
+server.port=8080
+spring.main.banner-mode=console
+logging.level.root=INFO
+spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
+spring.datasource.username=franciscoaliahernandez
+spring.datasource.password=
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.hibernate.ddl-auto=update   
+spring.jpa.show-sql=true   
+
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+```
 
 ### Estructura del proyecto
 
