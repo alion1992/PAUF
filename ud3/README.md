@@ -48,7 +48,7 @@ spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
 spring.datasource.username=franciscoaliahernandez
 spring.datasource.password=
 spring.datasource.driver-class-name=org.postgresql.Driver
-spring.jpa.hibernate.ddl-auto=update   
+spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true   
 
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
