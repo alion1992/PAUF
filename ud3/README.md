@@ -203,3 +203,45 @@ Los motivos:
   <li>Eficiencia: podemos agrupar o transformar datos para simplificar las respuestas del API.</li>
 </ul>
 
+### Servicio
+
+```java
+@Service
+public class UsuarioService {
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    public List<UsuarioDTO> obtenerUsuarios() {
+        return usuarioRepository.findAll()
+                .stream()
+                .map(u -> new UsuarioDTO(u.getId(), u.getNombre(), u.getEmail()))
+                .toList();
+    }
+}
+```
+### Model
+
+```java
+@Service
+public class UsuarioService {
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    public List<UsuarioDTO> obtenerUsuarios() {
+        return usuarioRepository.findAll()
+                .stream()
+                .map(u -> new UsuarioDTO(u.getId(), u.getNombre(), u.getEmail()))
+                .toList();
+    }
+}
+```
+
+### Repository
+
+```java
+@Repository
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+}
+```
