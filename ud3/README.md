@@ -236,19 +236,15 @@ public class UsuarioService {
 ### Model
 
 ```java
-@Service
-public class UsuarioService {
+@Entity
+public class Usuario {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    public List<UsuarioDTO> obtenerUsuarios() {
-        return usuarioRepository.findAll()
-                .stream()
-                .map(u -> new UsuarioDTO(u.getId(), u.getNombre(), u.getEmail()))
-                .toList();
-    }
-}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String nombre;
+    private String email;
+    private String pwd;
 ```
 
 ### Repository
