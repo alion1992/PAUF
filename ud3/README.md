@@ -258,3 +258,77 @@ public class UsuarioService {
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 }
 ```
+### Hibernate mapeo de clases
+
+Para realizar un mapeo de una clase tenemos que utilizar la etiqueta @Entity
+
+```java
+
+@Entity
+@Table(name = "usuarios") 
+public class Usuario {
+```
+
+Con Table indicamos el nombre de la tabla de la BBDD
+
+Para el campo Id de clave primaria:
+
+```java
+@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+```
+
+Cuando mapeamos una columna en la bbdd si queremos configurar alguno de los parámetros hay que indicarselo como argumento en la etiqueta @Column
+
+```java
+@Column(nullable = false, unique = true, length = 50)
+    private String nombreUsuario;
+
+    @Column(nullable = false)
+    private String password;
+```
+
+### Relaciones 
+
+	<strong>One to One</strong><br>
+	
+	
+	//Clase Persona
+	@OneToOne(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            optional = false
+    )
+    @JoinColumn(name = "dni_id", referencedColumnName = "id", unique = true)
+    private Dni dni;
+
+
+	
+	//Clase Dni
+	 @OneToOne(mappedBy = "dni", fetch = FetchType.LAZY)
+	    private Persona persona;
+
+	
+<strong>One to Many</strong><br>
+Para indicar una relación en la bbdd 
+
+```java
+//Clase Usuario
+@OneToMany(
+            mappedBy = "usuario",   
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private Set<Tarea> tareas = new HashSet<>();
+```
+
+```java
+//Clase Tarea
+// Muchas tareas pertenecen a un usuario
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+```
+
