@@ -16,16 +16,6 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping("/api/hola")
-    public String hola() {
-        return "Hola";
-    }
-
-    @GetMapping("/api/adios")
-    public String home() {
-        return "Adios";
-    }
-
     @GetMapping("/api/listaUsuarios")
     public List<UsuarioDTO> listar() {
         return usuarioService.obtenerUsuarios();
