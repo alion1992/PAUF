@@ -19,4 +19,9 @@ public class UsuarioService {
                 .map(u -> new UsuarioDTO(u.getId(), u.getNombre(), u.getEmail()))
                 .toList();
     }
+
+    public List<UsuarioDTO> obtenerUsuariosPorEmail(String email) {
+            return usuarioRepository.findByEmail(email).stream().
+                    map(u -> new UsuarioDTO(u.getId(), u.getNombre(), u.getEmail())).toList();
+    }
 }
