@@ -12,16 +12,25 @@ public class Usuario {
     private String nombre;
     private String email;
     private String password;
-    private String hola;
-    private String pruebaClase;
 
-    public Usuario(Long id, String nombre, String email, String password,String hola,String pruebaClase) {
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "direccion_id")
+    private Direccion direccion;
+
+    public Direccion getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
+    }
+
+    public Usuario(Long id, String nombre, String email, String password, Direccion direccion) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
         this.password = password;
-        this.hola = hola;
-        this.pruebaClase = pruebaClase;
+        this.direccion = direccion;
     }
 
     public Usuario(){}
@@ -58,19 +67,4 @@ public class Usuario {
         this.password = password;
     }
 
-    public String getHola() {
-        return hola;
-    }
-
-    public void setHola(String hola) {
-        this.hola = hola;
-    }
-
-    public String getPruebaClase() {
-        return pruebaClase;
-    }
-
-    public void setPruebaClase(String pruebaClase) {
-        this.pruebaClase = pruebaClase;
-    }
 }
