@@ -3,6 +3,9 @@ package com.daw.scrum.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name ="usuario")
 public class Usuario {
@@ -12,6 +15,9 @@ public class Usuario {
     private String nombre;
     private String email;
     private String password;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval = true)
+    private Set<Venta> ventas =  new HashSet<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "direccion_id")
@@ -25,12 +31,13 @@ public class Usuario {
         this.direccion = direccion;
     }
 
-    public Usuario(Long id, String nombre, String email, String password, Direccion direccion) {
+    public Usuario(Long id, String nombre, String email, String password, Direccion direccion, Set<Venta> ventas) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
         this.password = password;
         this.direccion = direccion;
+        this.ventas = ventas;
     }
 
     public Usuario(){}
@@ -67,4 +74,11 @@ public class Usuario {
         this.password = password;
     }
 
+    public Set<Venta> getVentas() {
+        return ventas;
+    }
+
+    public void setVentas(Set<Venta> ventas) {
+        this.ventas = ventas;
+    }
 }
