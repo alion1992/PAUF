@@ -1,10 +1,10 @@
 package com.daw.scrum.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class EstadoVenta {
@@ -14,6 +14,9 @@ public class EstadoVenta {
     private Long id;
 
     private String descripcion;
+
+    @OneToMany(mappedBy = "estadoVenta", cascade = CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval = true)
+    private Set<Venta> ventas =  new HashSet<>();
 
     public EstadoVenta(Long id, String descripcion) {
         this.id = id;

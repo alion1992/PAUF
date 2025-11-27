@@ -4,10 +4,7 @@ import com.daw.scrum.dto.UsuarioDTO;
 import com.daw.scrum.dto.VentaDTO;
 import com.daw.scrum.service.VentasService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +24,13 @@ public class VentaController
     public String listar() {
         return "holass";
     }
+
+    @GetMapping("/api/obtenerVenta/{id}")
+    public VentaDTO obtenerVenta(@PathVariable("id") Long id) {
+        return ventasService.obtenerVenta(id);
+    }
+
+
 
 
 }

@@ -17,8 +17,8 @@ public class Venta {
     @JoinColumn(name="usuario_id", nullable = false)
     private Usuario usuario;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "estadoVenta_id", referencedColumnName = "id", unique = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "estadoVenta_id",nullable = false)
     private EstadoVenta estadoVenta;
 
     public Venta(Long id, Date fechaVenta, Usuario usuario, EstadoVenta estadoVenta) {

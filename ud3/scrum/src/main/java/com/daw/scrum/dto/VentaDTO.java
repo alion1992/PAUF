@@ -2,6 +2,7 @@ package com.daw.scrum.dto;
 
 import com.daw.scrum.model.EstadoVenta;
 import com.daw.scrum.model.Usuario;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.Date;
 public class VentaDTO
 {
     private Long id;
+
 
     private Date fechaVenta;
 
