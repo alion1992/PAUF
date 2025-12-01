@@ -287,9 +287,11 @@ Cuando mapeamos una columna en la bbdd si queremos configurar alguno de los par�
 
 ### Relaciones 
 
-	<strong>One to One</strong><br>
+<strong>One to One</strong>
+Para indicar una relación en la bbdd 
+<br>
 	
-	
+```java
 	//Clase Persona
 	@OneToOne(
             cascade = CascadeType.ALL,
@@ -304,8 +306,8 @@ Cuando mapeamos una columna en la bbdd si queremos configurar alguno de los par�
 	//Clase Dni
 	 @OneToOne(mappedBy = "dni", fetch = FetchType.LAZY)
 	    private Persona persona;
+```
 
-	
 <strong>One to Many</strong><br>
 Para indicar una relación en la bbdd 
 
@@ -327,4 +329,65 @@ Para indicar una relación en la bbdd
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 ```
+<strong>ManyToMany</strong>
+<br>
+Una relación ManyToMany es cuando una entidad puede estar relacionada con muchas otras, y viceversa.
 
+Usuarios ↔ Roles
+
+Estudiantes ↔ Asignaturas
+
+Productos ↔ Categorías
+
+```java
+//Clase Venta
+ @ManyToMany
+    @JoinTable(
+            name = "venta_producto",
+            joinColumns = @JoinColumn(name = "venta_id"),
+            inverseJoinColumns = @JoinColumn(name = "producto_id")
+    )
+    private Set<Producto> productos = new HashSet<>();
+´´´
+
+También debe hacerse el mapeo inverso
+
+```java
+//Productos
+@ManyToMany(mappedBy = "productos")
+    private Set<Venta> ventas = new HashSet<>();
+```
+
+<h3>¿Por qué usamos @JoinTable?</h3>
+
+Para definir:
+
+el nombre de la tabla intermedia
+
+clave de usuario
+
+clave de rol
+
+Si NO lo pones, JPA creará nombres automáticos (no recomendables).
+
+<h3>¿Qué crea JPA</h3>
+
+Una tabla intermedia:
+
+```bash
+Hibernate: insert into venta (estado_venta_id,fecha_venta,usuario_id) values (?,?,?) returning id
+Hibernate: insert into venta_producto (venta_id,producto_id) values (?,?)
+Hibernate: insert into venta_producto (venta_id,producto_id) values (?,?)
+```
+<h2>Clase Service</h2>
+
+Recogemos del dto cada uno de los productos y lo añadimos a la lista.
+
+```java
+Venta venta = new Venta(null, ventaDTO.getFechaVenta(),user,estadoVenta);
+        for (int i = 0; i < ventaDTO.getProductos().size(); i++) {
+            Producto producto = productoRepository.findById(ventaDTO.getProductos().get(i).getId()).orElse(null);
+            venta.getProductos().add(producto);
+        }
+        venta = ventasRepository.save(venta);
+```
