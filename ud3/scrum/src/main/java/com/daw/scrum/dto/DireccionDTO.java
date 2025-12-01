@@ -9,11 +9,14 @@ public class DireccionDTO {
 
     private String localidad;
 
-    public DireccionDTO(Long id, String calle, String numero, String localidad) {
+    private String cp;
+
+    public DireccionDTO(Long id, String calle, String numero, String localidad, String cp) {
         Id = id;
         this.calle = calle;
         this.numero = numero;
         this.localidad = localidad;
+        this.cp = cp;
     }
 
     public Long getId() {
@@ -46,5 +49,13 @@ public class DireccionDTO {
 
     public void setLocalidad(String localidad) {
         this.localidad = localidad;
+    }
+
+    public String getCp() {
+        return cp;
+    }
+
+    public void setCp(String cp) {
+        this.cp = cp;
     }
 }

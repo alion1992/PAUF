@@ -16,7 +16,7 @@ public class Direccion {
 
     private String localidad;
 
-    @Column(nullable = false)
+
     private String cp;
 
     public Direccion() {
