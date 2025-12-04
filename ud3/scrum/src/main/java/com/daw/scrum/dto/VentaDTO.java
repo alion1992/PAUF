@@ -5,7 +5,9 @@ import com.daw.scrum.model.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class VentaDTO
 {
@@ -18,11 +20,23 @@ public class VentaDTO
 
     private EstadoVentaDTO estadoVenta;
 
+    private List<ProductoDTO> productos = new ArrayList<>();
+
+    public  VentaDTO(){}
+
     public VentaDTO(Long id, Date fechaVenta, UsuarioDTO usuario, EstadoVentaDTO estadoVenta) {
         this.id = id;
         this.fechaVenta = fechaVenta;
         this.usuario = usuario;
         this.estadoVenta = estadoVenta;
+    }
+
+    public VentaDTO(Long id, Date fechaVenta, UsuarioDTO usuario, EstadoVentaDTO estadoVenta, List<ProductoDTO> productos) {
+        this.id = id;
+        this.fechaVenta = fechaVenta;
+        this.usuario = usuario;
+        this.estadoVenta = estadoVenta;
+        this.productos = productos;
     }
 
     public Long getId() {
@@ -55,5 +69,13 @@ public class VentaDTO
 
     public void setEstadoVenta(EstadoVentaDTO estadoVenta) {
         this.estadoVenta = estadoVenta;
+    }
+
+    public List<ProductoDTO> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<ProductoDTO> productos) {
+        this.productos = productos;
     }
 }

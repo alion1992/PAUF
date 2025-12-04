@@ -3,6 +3,8 @@ package com.daw.scrum.model;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Venta {
@@ -20,6 +22,14 @@ public class Venta {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "estadoVenta_id",nullable = false)
     private EstadoVenta estadoVenta;
+
+    @ManyToMany
+    @JoinTable(
+            name = "venta_producto",
+            joinColumns = @JoinColumn(name = "venta_id"),
+            inverseJoinColumns = @JoinColumn(name = "producto_id")
+    )
+    private Set<Producto> productos = new HashSet<>();
 
     public Venta(Long id, Date fechaVenta, Usuario usuario, EstadoVenta estadoVenta) {
         this.id = id;
@@ -60,5 +70,13 @@ public class Venta {
 
     public void setEstadoVenta(EstadoVenta estadoVenta) {
         this.estadoVenta = estadoVenta;
+    }
+
+    public Set<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(Set<Producto> productos) {
+        this.productos = productos;
     }
 }

@@ -1,12 +1,16 @@
 package com.daw.scrum.service;
 
 
+import com.daw.scrum.dto.ProductoDTO;
 import com.daw.scrum.dto.UsuarioDTO;
 import com.daw.scrum.dto.VentaDTO;
+import com.daw.scrum.dto.mapper.ProductoMapper;
 import com.daw.scrum.model.EstadoVenta;
+import com.daw.scrum.model.Producto;
 import com.daw.scrum.model.Usuario;
 import com.daw.scrum.model.Venta;
 import com.daw.scrum.repository.EstadoVentaRepository;
+import com.daw.scrum.repository.ProductoRepository;
 import com.daw.scrum.repository.VentasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +20,9 @@ public class VentasService {
 
     @Autowired
     private VentasRepository ventasRepository;
+
+    @Autowired
+    private ProductoRepository productoRepository;
 
     @Autowired
     private EstadoVentaRepository estadoVentaRepository;
@@ -32,6 +39,10 @@ public class VentasService {
         }
 
         Venta venta = new Venta(null, ventaDTO.getFechaVenta(),user,estadoVenta);
+        for (int i = 0; i < ventaDTO.getProductos().size(); i++) {
+            Producto producto = productoRepository.findById(ventaDTO.getProductos().get(i).getId()).orElse(null);
+            venta.getProductos().add(producto);
+        }
         venta = ventasRepository.save(venta);
         ventaDTO.setId(venta.getId());
         ventaDTO.getEstadoVenta().setId(venta.getEstadoVenta().getId());
@@ -41,11 +52,19 @@ public class VentasService {
 
     public VentaDTO obtenerVenta(Long id){
         Venta venta = ventasRepository.findById(id).orElse(null);
-
+        //AQUÍ HAGO EL MAPEO DE LOS PRODUCTOS
         if (null != venta){
             UsuarioDTO userDto = new UsuarioDTO(venta.getUsuario().getId(),venta.getUsuario().getNombre(), venta.getUsuario().getEmail(), venta.getUsuario().getDireccion());
+            VentaDTO dto = new VentaDTO(venta.getId(), venta.getFechaVenta(),userDto,null);
+            if (null != venta.getProductos()){
+                ProductoDTO productoDTO = null;
+                for (Producto p : venta.getProductos()){
+                    productoDTO = ProductoMapper.toDTO(p);
+                    dto.getProductos().add(productoDTO);
+                }
+            }
 
-            return new VentaDTO(null,venta.getFechaVenta(),userDto,null);
+            return dto;
         } else {
             return null;
         }

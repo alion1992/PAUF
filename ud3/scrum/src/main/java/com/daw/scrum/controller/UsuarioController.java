@@ -1,7 +1,9 @@
 package com.daw.scrum.controller;
 import com.daw.scrum.dto.UsuarioDTO;
+import com.daw.scrum.dto.views.UsuarioView;
 import com.daw.scrum.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +34,16 @@ public class UsuarioController {
     @GetMapping("api/obtenerUsuario/{id}")
     public UsuarioDTO obtenerUsuario(@PathVariable("id") Long id){
         return usuarioService.obtenerUsuario(id);
+    }
+
+    @GetMapping("api/listaUsuariosCasera")
+    public List<UsuarioView> listarUsuarios() {
+        return usuarioService.listarUsuarios();
+    }
+
+    @GetMapping("api/listaUsuariosParametros")
+    public List<UsuarioView> listarUsuarios(@RequestParam String nombre, @RequestParam String email) {
+        return usuarioService.listarUsuariosPorNombreYEmail(nombre,email);
     }
 
 

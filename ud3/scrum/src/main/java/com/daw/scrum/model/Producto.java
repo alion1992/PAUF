@@ -2,6 +2,9 @@ package com.daw.scrum.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 public class Producto {
 
@@ -13,6 +16,9 @@ public class Producto {
     private String nombre;
 
     private double precio;
+
+    @ManyToMany(mappedBy = "productos")
+    private Set<Venta> ventas = new HashSet<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tipo_producto_id", referencedColumnName = "id", unique = true)

@@ -1,6 +1,7 @@
 package com.daw.scrum.service;
 
 import com.daw.scrum.dto.UsuarioDTO;
+import com.daw.scrum.dto.views.UsuarioView;
 import com.daw.scrum.model.Usuario;
 import com.daw.scrum.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +47,13 @@ public class UsuarioService {
              return new UsuarioDTO(usuario.getId(),usuario.getNombre(), usuario.getEmail(), usuario.getDireccion());
          }
 
+    }
+
+    public List<UsuarioView> listarUsuarios() {
+        return usuarioRepository.listarUsuarios();
+    }
+
+    public List<UsuarioView> listarUsuariosPorNombreYEmail(String nombre, String email) {
+        return usuarioRepository.listarUsuariosPorNombreYEmail(nombre,email);
     }
 }
