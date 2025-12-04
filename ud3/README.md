@@ -348,7 +348,7 @@ Productos ↔ Categorías
             inverseJoinColumns = @JoinColumn(name = "producto_id")
     )
     private Set<Producto> productos = new HashSet<>();
-´´´
+```
 
 También debe hacerse el mapeo inverso
 
