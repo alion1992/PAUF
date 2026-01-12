@@ -20,10 +20,10 @@ export class Busqueda {
 
 
   anillosFiltrados: Anillo[] = this.anillo.anillos
-  campoBusqueda: string = '';
+  campoBusqueda: string = 'pepe';
   buscar() {
 
-     const t = this.campoBusqueda.toLowerCase();
+    const t = this.campoBusqueda.toLowerCase();
 
     this.anillosFiltrados = this.anillo.anillos.filter(a =>
       a.nombre.toLowerCase().includes(t) ||
