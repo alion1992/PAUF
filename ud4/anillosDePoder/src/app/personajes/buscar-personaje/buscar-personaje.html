@@ -1,0 +1,6 @@
+
+@for (item of personajes; track item.id) {
+<li>{{ item.nombre }}</li>
+} @empty {
+<li>no hay</li>
+}
