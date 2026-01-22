@@ -10,5 +10,6 @@ export const routes: Routes = [
     { path: 'buscar', component: Busqueda },
     { path: 'detalleRaza', component: DetalleRaza},
     { path: 'personajes', component: BuscarPersonaje},
-    { path: 'editar/:id', component: DetallePersonaje}
+    { path: 'editar/:id', component: DetallePersonaje},
+    { path: 'crearPersonaje', component: DetallePersonaje }
 ];

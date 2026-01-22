@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonajesService } from '../../servicios/personajes-service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detalle-personaje',
@@ -9,7 +10,12 @@ import { PersonajesService } from '../../servicios/personajes-service';
 })
 export class DetallePersonaje implements OnInit {
 
-  constructor(private personaService: PersonajesService){}
+  
+
+  constructor(private personaService: PersonajesService, private routeActiva: ActivatedRoute){
+    const id = this.routeActiva.snapshot.paramMap.get("id");
+    alert("Tengo el id:"+id)
+  }
 
 
   ngOnInit(): void {
