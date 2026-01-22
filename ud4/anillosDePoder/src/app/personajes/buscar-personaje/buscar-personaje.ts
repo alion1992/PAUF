@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PersonajesService } from '../../servicios/personajes-service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-buscar-personaje',
@@ -12,10 +14,20 @@ export class BuscarPersonaje implements OnInit {
   personajes: any [] = [];
   error = ''
 
-  constructor(private personajeService: PersonajesService){}
+  constructor(private personajeService: PersonajesService,private cdr: ChangeDetectorRef, private route: Router
+  ){
+    
+  }
+
+  editar(id:number){
+    
+    this.route.navigate(["/editar",id])
+  }
 
   ngOnInit(): void {
     this.cargarPersonajes();
+    
+
   }
 
   cargarPersonajes () {
@@ -23,9 +35,12 @@ export class BuscarPersonaje implements OnInit {
       next: data => {
         console.log(data)
         this.personajes = data
+        this.cdr.detectChanges()
       }, error: err => {
         this.error = 'Se ha producido un error'
       }
     })
   }
 }
+
+
