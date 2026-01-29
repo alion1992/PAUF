@@ -5,6 +5,7 @@ import { DetalleRaza } from './raza/detalle-raza/detalle-raza';
 import { BuscarPersonaje } from './personajes/buscar-personaje/buscar-personaje';
 import { DetallePersonaje } from './personajes/detalle-personaje/detalle-personaje';
 import { PopupConfirmar } from './modal/popup-confirmar/popup-confirmar';
+import { Padre } from './modales/padre/padre';
 
 export const routes: Routes = [
     { path: 'detalle', component: Detalle },
@@ -13,5 +14,6 @@ export const routes: Routes = [
     { path: 'personajes', component: BuscarPersonaje},
     { path: 'editar/:id', component: DetallePersonaje},
     { path: 'crearPersonaje', component: DetallePersonaje },
-    { path: 'modal', component: PopupConfirmar }
+    { path: 'modal', component: PopupConfirmar },
+    { path: 'padre', component: Padre}
 ];

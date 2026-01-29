@@ -28,7 +28,7 @@ export class App implements OnInit {
   }
 
   confirmDelete = {
-    message: 'EY',
+    message: '¿Estas seguro que lo quieres borrar?',
     header: 'Eliminar personaje'
   }
   
