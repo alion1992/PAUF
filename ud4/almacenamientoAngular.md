@@ -185,45 +185,8 @@ localStorage.setItem('usuario', JSON.stringify(usuario));
 const user = JSON.parse(localStorage.getItem('usuario')!);
 ```
 
-### Centraliza el acceso en un servicio
-
-Muy recomendable en Angular:
-
-``` typescript
-@Injectable({ providedIn: 'root' })
-export class StorageService {
-
-  setLocal(key:string, value:any){
-    localStorage.setItem(key, JSON.stringify(value));
-  }
-
-  getLocal(key:string){
-    return JSON.parse(localStorage.getItem(key)!);
-  }
-}
-```
-
-Evita acceder directamente desde los componentes.
-
 ------------------------------------------------------------------------
 
-## Error muy común
-
-Guardar objetos sin convertirlos:
-
-Incorrecto:
-
-``` typescript
-localStorage.setItem('usuario', usuario);
-```
-
-Correcto:
-
-``` typescript
-localStorage.setItem('usuario', JSON.stringify(usuario));
-```
-
-------------------------------------------------------------------------
 
 ## Conclusión
 
