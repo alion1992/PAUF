@@ -1,4 +1,4 @@
-# Almacenamiento en el Navegador: LocalStorage, SessionStorage y Cookies (Angular)
+# Almacenamiento en el Navegador: LocalStorage, SessionStorage y Cookies
 
 Cuando desarrollamos aplicaciones Angular, muchas veces necesitamos
 guardar información en el navegador del usuario.\
